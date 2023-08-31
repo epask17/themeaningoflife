@@ -1,22 +1,9 @@
-def caesar_encrypt(text, shift):
-    encrypted_text = ""
-    for char in text:
-        if char.isalpha():
-            shift_amount = shift % 26
-            if char.islower():
-                encrypted_text += chr(((ord(char) - ord('a') + shift_amount) % 26) + ord('a'))
-            else:
-                encrypted_text += chr(((ord(char) - ord('A') + shift_amount) % 26) + ord('A'))
-        else:
-            encrypted_text += char
-    return encrypted_text
+import base64
 
-def caesar_decrypt(text, shift):
-    return caesar_encrypt(text, -shift)
+# Encoded message
+encoded_message = "V291bGQgeW91IGxpa2UgdG8gZ28gdG8gZGlubmVyPw=="
 
-# Encrypted message
-encrypted_message = "Jxdii dtz tlqj yt ijqijsi?"
-
-# Decrypt and display
-decrypted_message = caesar_decrypt(encrypted_message, 3)
-print(decrypted_message)
+# Decode and display
+decoded_bytes = base64.b64decode(encoded_message)
+decoded_message = decoded_bytes.decode('utf-8')
+print(decoded_message)
